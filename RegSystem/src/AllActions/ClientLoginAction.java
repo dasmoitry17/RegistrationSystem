@@ -55,7 +55,7 @@ public class ClientLoginAction extends ActionSupport implements SessionAware {
 
 				return "SUCCESS";
 			} else {
-				setMsg("Invalid Password");
+				setMsg("Invalid Password.Try again");
 				return "LOGIN";
 			}
 		}
