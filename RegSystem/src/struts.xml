@@ -47,6 +47,11 @@
             <result name="success" type="chain">BringRSt</result>
             <result name="failure" type="chain">BringRSt</result>
         </action>
+        
+        <action name="fc" class="AllActions.CourseFetch" >
+            <result name="success">/CourseList.jsp</result>
+            <result name="failure">/failure.jsp</result>
+        </action>
 
 
 

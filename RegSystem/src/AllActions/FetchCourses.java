@@ -24,10 +24,25 @@ public class FetchCourses extends ActionSupport {
 	
 	public String execute() throws Exception{
 		
+		courselist=new ArrayList<Course>();
+		courselist=fetchCourse();
+		
+		return "success";
+	}
+	
+	public List<Course> fetchCourse()
+	{
 		try {
-			courselist=new ArrayList<Course>();
+			
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/registration_db","root","");
+			String query = "SELECT id,title,course_no,credit FROM courses";
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			List<Course>courselist1=new ArrayList<Course>();
+			//courselist1=new ArrayList<Course>();
 			Course course=null;
-			rs=fetchCourse();
+			
 			if(rs!=null)
 			{
 				while(rs.next())
@@ -37,34 +52,15 @@ public class FetchCourses extends ActionSupport {
 					course.setCredit(rs.getString("credit"));
 					course.setTitle(rs.getString("title"));
 					course.setId(rs.getInt("id"));
-					courselist.add(course);
+					courselist1.add(course);
 				}
 			}
-			
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		return "success";
-	}
-	
-	public ResultSet fetchCourse()
-	{
-		try {
-			
-			Class.forName("com.mysql.jdbc.Driver");
-			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/registration_db","root","");
-			String query = "SELECT id,title,course_no,credit FROM courses";
-			Statement stmt = conn.createStatement();
-			ResultSet rs = stmt.executeQuery(query);
-			return rs;
+			return courselist1;
 			
 		} catch (Exception e) {
 			e.printStackTrace();
 			return null;
 		}
 	}
-	
-	
 
 }
