@@ -7,14 +7,45 @@
 <struts>
 <package name="default" namespace="/users" extends="struts-default">
 
+        <action name="BringRSt" class="AllActions.FetchRStudents" >
+            <result name="success">/ReqStudentList.jsp</result>
+            <result name="failure">/failure.jsp</result>
+        </action>
+
         <action name="clientLogin" class="AllActions.ClientLoginAction" >
-            <result name="SUCCESS">/Welcome.jsp</result>
+            <result name="SUCCESS" type="chain">BringRSt</result>
             <result name="LOGIN">/ClientLogin.jsp</result>
         </action>
         
         <action name="logout" class="AllActions.ClientLoginAction" method="logout" >
             
             <result name="LOGOUT">/ClientLogin.jsp</result>
+        </action>
+        
+        <action name="BringSt" class="AllActions.FetchCourses" >
+            <result name="success">/CourseList.jsp</result>
+            <result name="failure">/failure.jsp</result>
+        </action>
+        
+        <action name="studentLogin" class="AllActions.StudentLoginAction" >
+            <result name="SUCCESS" type="chain">BringSt</result>
+            <result name="LOGIN">/StudentLogin.jsp</result>
+        </action>
+        
+        <action name="logout" class="AllActions.StudentLoginAction" method="logout" >            
+          <result name="LOGOUT">/StudentLogin.jsp</result>
+        </action>
+        
+        <action name="CEnlist" class="AllActions.EnlistCourse" >
+            <result name="SUCCESS" type="chain">BringSt</result>
+            <result name="HaveAlready">/ErrorEnlist.jsp</result>
+        </action>
+        
+        
+        
+        <action name="StdEnlist" class="AllActions.EnlistStudent" >
+            <result name="success" type="chain">BringRSt</result>
+            <result name="failure" type="chain">BringRSt</result>
         </action>
 
 

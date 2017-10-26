@@ -1,17 +1,16 @@
 package AllActions;
 
+import java.util.Map;
+
 import javax.servlet.http.HttpSession;
 
 import org.apache.struts2.ServletActionContext;
 import org.apache.struts2.dispatcher.SessionMap;
-
 import org.apache.struts2.interceptor.SessionAware;
 
 import com.opensymphony.xwork2.ActionSupport;
-import java.util.Map;
 
-
-public class ClientLoginAction extends ActionSupport implements SessionAware {
+public class StudentLoginAction extends ActionSupport implements SessionAware {
 	
 	private static final long serialVersionUID = -3434561352924343132L;
 
@@ -44,12 +43,12 @@ public class ClientLoginAction extends ActionSupport implements SessionAware {
 	}
 	
 	
-	public String execute() {
+	public String execute() throws Exception{
 		HttpSession session=ServletActionContext.getRequest().getSession(true);
 		
 		if(userId!=null)
 		{
-			if (userPass.equals("sparrow")) {
+			if (userPass.equals("student")) {
 				// add the attribute in session				
 				sessionMap.put("userId", userId);
 
