@@ -26,8 +26,12 @@ public class FetchCourses extends ActionSupport {
 		
 		courselist=new ArrayList<Course>();
 		courselist=fetchCourse();
+		if(courselist!=null)
 		
 		return "success";
+		else {
+			return "failure";
+		}
 	}
 	
 	public List<Course> fetchCourse()

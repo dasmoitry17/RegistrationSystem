@@ -34,6 +34,8 @@ public class FetchCoursesTest extends StrutsTestCase {
 		
 	
 	assertEquals(fetchCourses.fetchCourse(), list);
+	
+	assertEquals(fetchCourses.execute(), "success");
 		
 
 		
