@@ -43,7 +43,7 @@ public class StudentLoginAction extends ActionSupport implements SessionAware {
 	}
 	
 	
-	public String execute() throws Exception{
+	public String execute(){
 		HttpSession session=ServletActionContext.getRequest().getSession(true);
 		
 		if(userId!=null)
