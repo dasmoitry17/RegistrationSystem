@@ -19,11 +19,13 @@ public class FetchInfo {
 			ps.setInt(1, idc);
 			ps.setInt(2, ids);
 			ResultSet rs = ps.executeQuery();
-			if(rs.next()!=false)
-            selectedcourseid=rs.getInt("courseid");
+			if(rs.next()==false)
+				selectedcourseid=0;
+            
 			else
 			{
-				selectedcourseid=0;
+				selectedcourseid=rs.getInt("courseid");
+				//selectedcourseid=0;
 			}
 	
 		} catch (Exception e) {
