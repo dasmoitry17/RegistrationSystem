@@ -8,8 +8,84 @@ public class Student {
 	private String lastName;
 	private int id;
 	private int stdId; //auto inc
+	public Student(String firstName, String lastName, int id, int stdId, String gender, 
+			int no_course_taken) {
+		super();
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.id = id;
+		this.stdId = stdId;
+		this.gender = gender;
+		
+		this.no_course_taken = no_course_taken;
+	}
+
+
+
+
 	private String gender;
-    private List<Course> listOfCourses;
+   
+	public Student() {
+		
+	}
+	
+
+	
+
+	
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((firstName == null) ? 0 : firstName.hashCode());
+		result = prime * result + ((gender == null) ? 0 : gender.hashCode());
+		result = prime * result + id;
+		result = prime * result + ((lastName == null) ? 0 : lastName.hashCode());
+	
+		result = prime * result + no_course_taken;
+		result = prime * result + stdId;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Student other = (Student) obj;
+		if (firstName == null) {
+			if (other.firstName != null)
+				return false;
+		} else if (!firstName.equals(other.firstName))
+			return false;
+		if (gender == null) {
+			if (other.gender != null)
+				return false;
+		} else if (!gender.equals(other.gender))
+			return false;
+		if (id != other.id)
+			return false;
+		if (lastName == null) {
+			if (other.lastName != null)
+				return false;
+		} else if (!lastName.equals(other.lastName))
+			return false;
+		
+		if (no_course_taken != other.no_course_taken)
+			return false;
+		if (stdId != other.stdId)
+			return false;
+		return true;
+	}
+
+
+
+
+	private List<Course> listOfCourses;
     private int no_course_taken;
     
 	
