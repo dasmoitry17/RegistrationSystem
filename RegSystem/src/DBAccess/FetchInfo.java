@@ -4,7 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+import java.util.List;
 
+import AllActions.Course;
 import AllActions.DbInsert;
 import AllActions.Student;
 
@@ -68,6 +71,49 @@ public class FetchInfo {
 			System.out.println("validateInsert: Error inserting: "+e.getMessage());
 		}
 		return student;
+	}
+	
+	public List<Course> getMyCourses(int sId)
+	{
+		
+		
+		try {
+			
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/registration_db","root","");
+			String qs = "SELECT * FROM std_course  where stdid= ?" ;
+			PreparedStatement ps=conn.prepareStatement(qs);
+			ps.setInt(1, sId);
+    		ResultSet rs = ps.executeQuery();
+    		List<Course>myCourses=new ArrayList<Course>();
+    		
+    		while(rs.next())
+    		{
+    			String qString="SELECT * FROM courses  where id=?"  ;
+    			PreparedStatement preparedStatement=conn.prepareStatement(qString);
+    			preparedStatement.setInt(1, rs.getInt("courseid"));
+    			ResultSet resultSet=preparedStatement.executeQuery();
+    			
+    			Course course=null;
+    			while(resultSet.next())
+    			{
+    				 course=new Course();
+    				course.setCourseNo(resultSet.getString("course_no"));
+    				course.setCredit(resultSet.getString("credit"));
+    				course.setId(resultSet.getInt("id"));
+    				course.setTitle(resultSet.getString("title"));
+    				myCourses.add(course);
+    				
+    			}
+    			
+    		}
+    		return myCourses;
+			
+		} catch (Exception e) {
+			System.out.println("validateInsert: Error inserting: "+e.getMessage());
+			return null;
+		}
+		
 	}
 
 }
