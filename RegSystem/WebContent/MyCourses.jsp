@@ -35,7 +35,7 @@ button {
 </head>
 <body>
 
-Hello,	<s:property value="#session.userId" />
+<a href="studentLogin">Back to my Info</a>
 <div style="margin-top: 40px; margin-right: 150px; margin-left: 150px;">
 			<table>
 				<thead>

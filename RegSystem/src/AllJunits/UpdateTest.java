@@ -2,7 +2,7 @@ package AllJunits;
 
 import static org.junit.Assert.*;
 
-import org.hibernate.validator.internal.xml.DefaultValidatedExecutableTypesType;
+
 import org.junit.Before;
 import org.junit.Test;
 

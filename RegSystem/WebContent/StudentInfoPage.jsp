@@ -10,6 +10,7 @@
 <body>
 <a href="<s:url action="BringSt"/>">All Courses</a>
 <a href="<s:url action="mycourses"/>">My Courses</a>
+<a href="stdlogout">Logout</a>
 
 </body>
 </html>

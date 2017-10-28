@@ -47,6 +47,7 @@ public class FetchInfo {
 	public Student getRequestedStudent(int sid)
 	{
 		Student student=new Student();
+		student=null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/registration_db","root","");
@@ -174,6 +175,80 @@ public class FetchInfo {
 			
 		}
 		return no;
+	}
+	
+	public void getAppliedStd(int sid)
+	
+	{
+		AppliedStudent astudent=new AppliedStudent();
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/registration_db","root","");
+			String qs = "SELECT * FROM appliedstudents where id= ?" ;
+			PreparedStatement ps=conn.prepareStatement(qs);
+			ps.setInt(1, sid);
+    		ResultSet rs = ps.executeQuery();
+    		
+    		while(rs.next())
+    		{
+    			Student student=new Student();
+    			student.setFirstName(rs.getString("fname"));
+    			student.setLastName(rs.getString("lname"));
+    			student.setGender(rs.getString("gender"));
+    			student.setId(rs.getInt("id"));
+    			student.setNo_course_taken(0);	
+    			student.setPassword(rs.getString("password"));
+    			
+    			
+    			InsertInfo insertInfo=new InsertInfo();
+    			insertInfo.insetRegstd(student);
+    		}
+    		
+    		String query = "delete from appliedstudents where id = ?";
+		      PreparedStatement preparedStmt = conn.prepareStatement(query);
+		      preparedStmt.setInt(1, sid);
+		      preparedStmt.execute();
+		      
+		      conn.close();
+    		
+		} catch (Exception e) {
+			System.out.println("validateInsert: Error inserting in getcourseNo: "+e.getMessage());
+		}
+		
+	}
+
+
+	public List<Course> getAllCourses() {
+try {
+			
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/registration_db","root","");
+			String query = "SELECT id,title,course_no,credit FROM courses";
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			List<Course>courselist1=new ArrayList<Course>();
+			//courselist1=new ArrayList<Course>();
+			Course course=null;
+			
+			if(rs!=null)
+			{
+				while(rs.next())
+				{
+					course=new Course();
+					course.setCourseNo(rs.getString("course_no"));
+					course.setCredit(rs.getString("credit"));
+					course.setTitle(rs.getString("title"));
+					course.setId(rs.getInt("id"));
+					courselist1.add(course);
+				}
+			}
+			return courselist1;
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 	
 	

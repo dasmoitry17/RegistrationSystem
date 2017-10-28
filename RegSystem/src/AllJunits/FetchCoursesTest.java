@@ -13,6 +13,7 @@ import com.opensymphony.xwork2.ActionProxy;
 import AllActions.Course;
 
 import AllActions.FetchCourses;
+import DBAccess.FetchInfo;
 
 public class FetchCoursesTest extends StrutsTestCase {
 
@@ -29,11 +30,12 @@ public class FetchCoursesTest extends StrutsTestCase {
 		list.add(course4);
 		
 		FetchCourses fetchCourses=new FetchCourses();
+		FetchInfo fetchInfo=new FetchInfo();
 		ActionProxy proxy=getActionProxy("/users/BringSt");
 		fetchCourses=(FetchCourses)proxy.getAction();
 		
 	
-	assertEquals(fetchCourses.fetchCourse(), list);
+	assertEquals(fetchInfo.getAllCourses(), list);
 	
 	assertEquals(fetchCourses.execute(), "success");
 		

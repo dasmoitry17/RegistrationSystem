@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-Application done
+Application done. Next time login with your password that you have provided
 </body>
 </html>

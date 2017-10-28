@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.Statement;
 
 import AllActions.AppliedStudent;
+import AllActions.Student;
 
 public class InsertInfo {
 	
@@ -98,6 +99,41 @@ public class InsertInfo {
 		} catch (Exception e) {
 			System.out.println("validateInsert: Error inserting: "+e.getMessage());
 		}
+	}
+
+	public void insetRegstd(Student student) {
+		
+		String query = "INSERT INTO regstd ("
+			    + " fName,"
+			    + " lName,"
+			    + "id,"
+			    +"no_of_course,"
+			    +"password,"
+			    + " gender ) VALUES ("
+			    + "?, ?, ?,?,?,?)";
+
+		
+			try {
+				Class.forName("com.mysql.jdbc.Driver");
+				Connection connection = DriverManager.getConnection("jdbc:mysql://localhost/registration_db","root","");
+			    
+				PreparedStatement statement=connection.prepareStatement(query);
+				statement.setString(1, student.getFirstName());
+				statement.setString(2, student.getLastName());
+				statement.setInt(3, student.getId());
+				statement.setInt(4, student.getNo_course_taken());
+				statement.setString(5, student.getPassword());
+				statement.setString(6, student.getGender());
+				statement.executeUpdate();
+				statement.close();
+				
+				
+			} catch (Exception se) {
+				System.out.println("validateInsert: Error inserting a reg student: "+se.getMessage());
+			    
+			}
+		
+		
 	}
 	
 	

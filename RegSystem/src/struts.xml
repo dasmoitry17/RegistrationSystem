@@ -38,7 +38,7 @@
             <result name="LOGIN">/StudentLogin.jsp</result>
         </action>-->
         
-        <action name="logout" class="AllActions.StudentLoginAction" method="logout" >            
+        <action name="stdlogout" class="AllActions.StudentLoginAction" method="logout" >            
           <result name="LOGOUT">/StudentLogin.jsp</result>
         </action>
         

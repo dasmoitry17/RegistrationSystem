@@ -35,6 +35,7 @@ button {
 
 </head>
 <body>
+                                                                                   <a href="logout">Logout</a>
 <div style="margin-top: 40px; margin-right: 150px; margin-left: 150px;">
 			<table>
 				<thead>
