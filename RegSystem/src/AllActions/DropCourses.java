@@ -10,6 +10,7 @@ import java.util.Map;
 import com.opensymphony.xwork2.ActionContext;
 
 import DBAccess.DeleteInfo;
+import DBAccess.FetchInfo;
 
 public class DropCourses {
 	
@@ -37,8 +38,12 @@ public class DropCourses {
 			  cid=Integer.parseInt(id);
 			  
        }
+		int no_c=0;
+		FetchInfo fetchInfo=new FetchInfo();
+		no_c=fetchInfo.getCourseNo(sId);
+		
 		DeleteInfo deleteInfo=new DeleteInfo();
-		deleteInfo.delete(sId, cid);
+		deleteInfo.delete(sId, cid , no_c);
 		return "SUCCESS";
 		
 		

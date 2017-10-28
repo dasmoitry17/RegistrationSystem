@@ -153,6 +153,28 @@ public class FetchInfo {
 			return null;
 		}
 	}
+
+
+	public int getCourseNo(int sId) {
+		int no=0;
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/registration_db","root","");
+			String query = "SELECT no_of_course from regstd where stdid =" + sId;
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			while(rs.next())
+			{
+				 no=rs.getInt("no_of_course");
+				
+			}
+			
+		} catch (Exception e) {
+			System.out.println("validateInsert: Error inserting in getcourseNo: "+e.getMessage());
+			
+		}
+		return no;
+	}
 	
 	
 	

@@ -54,8 +54,18 @@ public class EnlistCourse extends ActionSupport {
 			
 			if(courseid==0)
 			{
-				InsertInfo insertInfo=new InsertInfo();
-				insertInfo.insertCourse(sId, cid);
+				int no_of_course=0;
+				FetchInfo fetchInfo2=new FetchInfo();
+				no_of_course=fetchInfo2.getCourseNo(sId);
+				if(no_of_course < 3)
+					
+				{InsertInfo insertInfo=new InsertInfo();
+				insertInfo.insertCourse(sId, cid , no_of_course);
+				}
+				else {
+					msg="You can take only 3 courses in this term";
+					return  "more";
+				}
 							
 		    }
 			else {
@@ -71,6 +81,8 @@ public class EnlistCourse extends ActionSupport {
 		return "SUCCESS";
 	}
 	
+	
+
 	
 
 	public Map getAdd() {

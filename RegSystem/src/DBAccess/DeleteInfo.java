@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 
 public class DeleteInfo {
 	
-	public void delete(int sid, int cid)
+	public void delete(int sid, int cid, int no_c)
 	{
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -16,6 +16,16 @@ public class DeleteInfo {
 		      preparedStmt.setInt(1, sid);
 		      preparedStmt.setInt(2, cid);
 		      preparedStmt.execute();
+		      
+		      String q1 = "update regstd set no_of_course = ? where stdid = ? ";
+			    no_c=no_c-1;
+				PreparedStatement statement1=conn.prepareStatement(q1);
+				  statement1.setInt(1, no_c);
+				  statement1.setInt(2, sid);
+				  
+				  statement1.executeUpdate();
+				  
+				  statement1.close();
 		      
 		      conn.close();
 		      

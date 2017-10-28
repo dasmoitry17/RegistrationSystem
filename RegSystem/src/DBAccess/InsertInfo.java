@@ -10,13 +10,13 @@ import AllActions.AppliedStudent;
 
 public class InsertInfo {
 	
-	public void insertCourse(int sid,int cid)
+	public void insertCourse(int sid,int cid, int no_c)
 
 	{
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/registration_db","root","");
-			
+		
 			String q = "INSERT INTO std_course ("
 				    + " stdid,"
 				    
@@ -29,11 +29,23 @@ public class InsertInfo {
 			
 		statement.executeUpdate();
 		statement.close();
+		
+		String q1 = "update regstd set no_of_course = ? where stdid = ? ";
+	    no_c=no_c+1;
+		PreparedStatement statement1=conn.prepareStatement(q1);
+		  statement1.setInt(1, no_c);
+		  statement1.setInt(2, sid);
+		  
+		  statement1.executeUpdate();
+		  
+		  statement1.close();
+		
+		
 
   conn.close();
 			
 		} catch (Exception e) {
-			// TODO: handle exception
+			System.out.println("validateInsert: Error inserting in insert and update: "+e.getMessage());
 		}
 		
 	}

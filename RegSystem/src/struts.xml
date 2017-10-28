@@ -45,6 +45,7 @@
         <action name="CEnlist" class="AllActions.EnlistCourse" >
             <result name="SUCCESS" type="chain">BringSt</result>
             <result name="HaveAlready">/ErrorEnlist.jsp</result>
+            <result name="more">/ErrorEnlist.jsp</result>
         </action>
         
         
