@@ -47,13 +47,13 @@ Hello,	<s:property value="#session.userId" />
 						
 					</tr>
 				</thead>
-			<form action="users/CEnlist">	
+			<form action="users/drop">	
 				<s:iterator value="myCourses">
 					<tr>
 						<td><s:property value="%{title}" /></td>
 						<td><s:property value="%{courseNo}" /></td>
 						<td><s:property value="%{credit}" /></td>
-						<td><input type="submit" name="Add[<s:property value="%{id}"/>]" value="Add"/></td>
+						<td><input type="submit" name="Drop[<s:property value="%{id}"/>]" value="Drop"/></td>
 						
 					</tr>
 				</s:iterator>

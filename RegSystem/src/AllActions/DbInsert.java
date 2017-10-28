@@ -17,9 +17,9 @@ public class DbInsert {
 			    + " lName,"
 			    + "id,"
 			    +"no_of_course,"
-			    
+			    +"password,"
 			    + " gender ) VALUES ("
-			    + "?, ?, ?,?,?)";
+			    + "?, ?, ?,?,?,?)";
 
 		
 			try {
@@ -29,7 +29,8 @@ public class DbInsert {
 				statement.setString(2, student.getLastName());
 				statement.setInt(3, student.getId());
 				statement.setInt(4, student.getNo_course_taken());
-				statement.setString(5, student.getGender());
+				statement.setString(5, student.getPassword());
+				statement.setString(6, student.getGender());
 				statement.executeUpdate();
 				statement.close();
 				

@@ -6,6 +6,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import AllActions.AppliedStudent;
+
 public class InsertInfo {
 	
 	public void insertCourse(int sid,int cid)
@@ -55,6 +57,35 @@ public class InsertInfo {
 			// TODO: handle exception
 		}
 		return rows;
+	}
+	
+	public void insertApplication(AppliedStudent student)
+	{
+		try {
+			
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/registration_db","root","");
+			String query = "INSERT INTO appliedstudents ("
+				    + " fname,"
+				    + " lname,"
+				    + " password,"
+				    + " department,"
+				    + " gender ) VALUES ("
+				    + "?, ?, ?,?,?)";
+			PreparedStatement statement=conn.prepareStatement(query);
+			statement.setString(1, student.getFirstName());
+			statement.setString(2, student.getLastName());
+			statement.setString(3, student.getPassword());
+			statement.setString(4, student.getDepartment());
+			statement.setString(5, student.getGender());
+			
+			statement.executeUpdate();
+			statement.close();
+			  
+			
+		} catch (Exception e) {
+			System.out.println("validateInsert: Error inserting: "+e.getMessage());
+		}
 	}
 	
 	

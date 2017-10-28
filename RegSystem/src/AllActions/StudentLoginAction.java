@@ -1,5 +1,10 @@
 package AllActions;
 
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.Map;
 
 import javax.servlet.http.HttpSession;
@@ -43,20 +48,35 @@ public class StudentLoginAction extends ActionSupport implements SessionAware {
 	}
 	
 	
+	
 	public String execute()throws Exception{
 		HttpSession session=ServletActionContext.getRequest().getSession(true);
 		
 		if(userId!=null)
 		{
-			if (userPass.equals("student")) {
-				// add the attribute in session				
-				sessionMap.put("userId", userId);
-
-				return "SUCCESS";
-			} else {
-				setMsg("Invalid Password.Try again");
-				return "LOGIN";
+			try {
+				
+				Class.forName("com.mysql.jdbc.Driver");
+				Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/registration_db","root","");
+		 String qs = "SELECT password from regstd where password = " + userPass ;
+		 Statement stmt = conn.createStatement();
+				ResultSet rs = stmt.executeQuery(qs);
+				if(!rs.next())
+				{
+					setMsg("Invalid Password.Try again");
+					return "LOGIN";
+				}
+				else {
+					sessionMap.put("userId", userId);
+					return "SUCCESS";
+				}
+				
+			} catch (Exception e) {
+				System.out.println("validateInsert: Error inserting: "+e.getMessage());
+				return null;
 			}
+			
+		
 		}
 		else {
 String getSessionAttr = (String) session.getAttribute("userId");

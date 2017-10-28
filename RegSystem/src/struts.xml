@@ -7,6 +7,12 @@
 <struts>
 <package name="default" namespace="/users" extends="struts-default">
 
+        <action name="apply" class="AllActions.StudentApplication" >
+            <result name="SUCCESS" >/Applied.jsp</result>
+            <result name="FAILURE">/StudentLogin.jsp</result>
+        
+         </action>
+
         <action name="BringRSt" class="AllActions.FetchRStudents" >
             <result name="success">/ReqStudentList.jsp</result>
             <result name="failure">/failure.jsp</result>
@@ -56,6 +62,12 @@
          
          <action name="mycourses" class="AllActions.FetchMyCourses" >
             <result name="SUCCESS">/MyCourses.jsp</result>
+            <result name="FAILURE">/StudentLogin.jsp</result>
+        
+         </action>
+         
+         <action name="drop" class="AllActions.DropCourses" >
+            <result name="SUCCESS" type="chain">mycourses</result>
             <result name="FAILURE">/StudentLogin.jsp</result>
         
          </action>

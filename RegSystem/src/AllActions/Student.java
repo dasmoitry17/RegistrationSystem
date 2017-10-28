@@ -8,6 +8,25 @@ public class Student {
 	private String lastName;
 	private int id;
 	private int stdId; //auto inc
+	private String password;
+	public String getPassword() {
+		return password;
+	}
+
+
+
+
+
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+
+
+
+
+
 	public Student(String firstName, String lastName, int id, int stdId, String gender, 
 			int no_course_taken) {
 		super();

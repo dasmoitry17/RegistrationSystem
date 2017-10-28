@@ -4,9 +4,11 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import AllActions.AppliedStudent;
 import AllActions.Course;
 import AllActions.DbInsert;
 import AllActions.Student;
@@ -115,5 +117,44 @@ public class FetchInfo {
 		}
 		
 	}
+	
+	
+	public List<AppliedStudent> getAppliedStd()
+	{
+		
+		try {
+			List<AppliedStudent>stdlist =new ArrayList<AppliedStudent>();
+			AppliedStudent student=null;
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/registration_db","root","");
+			String query = "SELECT * from appliedstudents";
+			Statement stmt = conn.createStatement();
+			ResultSet rs = stmt.executeQuery(query);
+			if(rs!=null)
+			{
+				while(rs.next()) {
+					student=new AppliedStudent();
+					student.setFirstName(rs.getString("fname"));
+					student.setLastName(rs.getString("lname"));
+					student.setGender(rs.getString("gender"));
+					student.setDepartment(rs.getString("department"));
+					student.setId(rs.getInt("id"));
+					student.setPassword(rs.getString("password"));
+					stdlist.add(student);
+				}
+			}
+			return stdlist;
+			
+		}
+		
+		
+		catch (Exception e) {
+			System.out.println("validateInsert: Error inserting: "+e.getMessage());
+			return null;
+		}
+	}
+	
+	
+	
 
 }

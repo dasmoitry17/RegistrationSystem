@@ -42,7 +42,7 @@ button {
 						<th>FIRSTNAME</th>
 						<th>LASTNAME</th>
 						<th>GENDER</th>
-						<th>ID</th>
+						<th>Department</th>
 						<th>Action</th>
 						
 					</tr>
@@ -53,7 +53,7 @@ button {
 						<td><s:property value="%{firstName}" /></td>
 						<td><s:property value="%{lastName}" /></td>
 						<td><s:property value="%{gender}" /></td>
-						<td><s:property value="%{id}" /></td>
+						<td><s:property value="%{department}" /></td>
 						<td><input type="submit" name="add[<s:property value="%{id}"/>]" value="add"/></td>
 						
 					</tr>

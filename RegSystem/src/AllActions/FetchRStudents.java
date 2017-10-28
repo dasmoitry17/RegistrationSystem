@@ -6,7 +6,7 @@ import java.util.List;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-
+import DBAccess.FetchInfo;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -14,11 +14,11 @@ import java.sql.Statement;
 
 public class FetchRStudents extends ActionSupport {
 	
-	List<Student>stdlist=null;
-	public List<Student> getStdlist() {
+	List<AppliedStudent>stdlist=new ArrayList<AppliedStudent>();
+	public List<AppliedStudent> getStdlist() {
 		return stdlist;
 	}
-	public void setStdlist(List<Student> stdlist) {
+	public void setStdlist(List<AppliedStudent> stdlist) {
 		this.stdlist = stdlist;
 	}
 	ResultSet rs=null;
@@ -26,27 +26,31 @@ public class FetchRStudents extends ActionSupport {
 	
 	
 	public String execute() throws Exception {
-		try {
-			
-				stdlist =new ArrayList<Student>();
-				Student student=null;
-				rs=fetchStudent();
-				if(rs!=null)
-				{
-					while(rs.next()) {
-						student=new Student();
-						student.setFirstName(rs.getString("firstname"));
-						student.setLastName(rs.getString("lastname"));
-						student.setGender(rs.getString("gender"));
-						student.setId(rs.getInt("id"));
-						stdlist.add(student);
-					}
-				}
-			
-		} catch (Exception e) {
-			e.printStackTrace();
-		}
-		
+//		try {
+//			
+//				stdlist =new ArrayList<AppliedStudent>();
+//				AppliedStudent student=null;
+//				rs=fetchStudent();
+//				if(rs!=null)
+//				{
+//					while(rs.next()) {
+//						student=new AppliedStudent();
+//						student.setFirstName(rs.getString("fname"));
+//						student.setLastName(rs.getString("lname"));
+//						student.setGender(rs.getString("gender"));
+//						student.setDepartment(rs.getString("department"));
+//						student.setId(rs.getInt("id"));
+//						student.setPassword(rs.getString("password"));
+//						stdlist.add(student);
+//					}
+//				}
+//			
+//		} catch (Exception e) {
+//			e.printStackTrace();
+//		}
+//		
+		FetchInfo fetchInfo=new FetchInfo();
+		stdlist=fetchInfo.getAppliedStd();
 		return "success";
 		
 	}
@@ -56,7 +60,7 @@ public class FetchRStudents extends ActionSupport {
 			
 			Class.forName("com.mysql.jdbc.Driver");
 			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/registration_db","root","");
-			String query = "SELECT id,firstname, lastname,gender FROM students";
+			String query = "SELECT * from appliedstudents";
 			Statement stmt = conn.createStatement();
 			ResultSet rs = stmt.executeQuery(query);
 			return rs;
