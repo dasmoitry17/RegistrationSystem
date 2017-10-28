@@ -14,12 +14,11 @@ public class EnlistCourseTest extends StrutsTestCase{
 
 	@Test
 	public void test() {
-		//int 
+		
 		FetchInfo fetchInfo=new FetchInfo();
 		assertEquals(fetchInfo.getCourseId(2, 12), 2);
 
-//		FetchInfo fetchInfo2=new FetchInfo();
-//		assertNull(object);
+
 		
 	}
 

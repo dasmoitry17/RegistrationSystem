@@ -98,6 +98,17 @@ public class AppliedStudent {
 		this.id = id;
 		this.gender = gender;
 	}
+	
+	public AppliedStudent(String firstName, String lastName, String department, String gender,String password,int id) {
+		
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.department = department;
+		this.gender = gender;
+		this.password=password;
+		this.id=id;
+		
+	}
 	public void setPassword(String password) {
 		this.password = password;
 	}

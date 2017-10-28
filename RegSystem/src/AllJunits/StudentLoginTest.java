@@ -23,7 +23,7 @@ public class StudentLoginTest extends StrutsTestCase{
          sl=(StudentLoginAction)proxy.getAction();
          assertEquals(sl.execute(), "SUCCESS");
          
-		//fail("Not yet implemented");
+		
 	}
 
 }

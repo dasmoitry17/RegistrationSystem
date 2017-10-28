@@ -251,6 +251,40 @@ try {
 		}
 	}
 	
+	public List<Student> getAllRegStudents() {
+		try {
+					
+					Class.forName("com.mysql.jdbc.Driver");
+					Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/registration_db","root","");
+					String query = "SELECT * FROM regstd";
+					Statement stmt = conn.createStatement();
+					ResultSet rs = stmt.executeQuery(query);
+					List<Student>studentlist1=new ArrayList<Student>();
+					//courselist1=new ArrayList<Course>();
+					Student student=null;
+					
+					if(rs!=null)
+					{
+						while(rs.next())
+						{
+							student=new Student();
+							student.setFirstName(rs.getString("fName"));
+							student.setLastName(rs.getString("lName"));
+							student.setGender(rs.getString("gender"));
+							student.setNo_course_taken(rs.getInt("no_of_course"));
+							student.setPassword(rs.getString("password"));
+							student.setStdId(rs.getInt("stdid"));
+							studentlist1.add(student);
+						}
+					}
+					return studentlist1;
+					
+				} catch (Exception e) {
+					e.printStackTrace();
+					return null;
+				}
+			}
+			
 	
 	
 

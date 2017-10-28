@@ -23,7 +23,7 @@ public class DeletionTest {
 	 
 	 AppliedStudent student=new AppliedStudent("John", "Smith", 1, "male");
 	 
-	 assertThat(list, CoreMatchers.hasItem(student));;
+	 assertThat(list, CoreMatchers.hasItem(student));
 	 
 	 AppliedStudent student2=new AppliedStudent("Laura", "Smith", 2, "female");
 	 
