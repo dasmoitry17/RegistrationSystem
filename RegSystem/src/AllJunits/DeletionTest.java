@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 
 import AllActions.AppliedStudent;
@@ -20,8 +21,11 @@ public class DeletionTest {
 	 
 	 assertTrue(list.isEmpty());
 	 
-	 //AppliedStudent student=new AppliedStudent("", lastName, id, gender);
+	 AppliedStudent student=new AppliedStudent("John", "Smith", 1, "male");
 	 
+	 assertThat(list, CoreMatchers.hasItem(student));;
+	 
+	 AppliedStudent student2=new AppliedStudent("Laura", "Smith", 2, "female");
 	 
 	}
 
