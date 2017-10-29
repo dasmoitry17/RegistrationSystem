@@ -15,7 +15,7 @@ public class UpdateTest {
 	public void deleteFirst()
 	{
 		DeleteInfo deleteInfo=new DeleteInfo();
-		deleteInfo.delete(1011, 1, 3);
+		deleteInfo.delete(1011, 1, 3, 2);
 	}
 
 	@Test

@@ -35,7 +35,7 @@ button {
 
 </head>
 <body>
-<a href="studentLogin">Back to my Info</a>
+<a href="clientLogin">Back</a>
 <div style="margin-top: 40px; margin-right: 150px; margin-left: 150px;">
 			<table>
 				<thead>

@@ -11,7 +11,7 @@ import AllActions.Student;
 
 public class InsertInfo {
 	
-	public void insertCourse(int sid,int cid, int no_c)
+	public void insertCourse(int sid,int cid, int no_c, int no_s)
 
 	{
 		try {
@@ -40,6 +40,16 @@ public class InsertInfo {
 		  statement1.executeUpdate();
 		  
 		  statement1.close();
+		  
+		  String q2 = "update courses set stdno = ? where id = ? ";
+		    no_s=no_s+1;
+			PreparedStatement statement2=conn.prepareStatement(q2);
+			  statement2.setInt(1, no_s);
+			  statement2.setInt(2, cid);
+			  
+			  statement2.executeUpdate();
+			  
+			  statement2.close();
 		
 		
 

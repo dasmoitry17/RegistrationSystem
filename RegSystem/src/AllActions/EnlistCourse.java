@@ -54,13 +54,29 @@ public class EnlistCourse extends ActionSupport {
 			
 			if(courseid==0)
 			{
+				
+				
+				
 				int no_of_course=0;
 				FetchInfo fetchInfo2=new FetchInfo();
 				no_of_course=fetchInfo2.getCourseNo(sId);
 				if(no_of_course < 3)
 					
-				{InsertInfo insertInfo=new InsertInfo();
-				insertInfo.insertCourse(sId, cid , no_of_course);
+				{
+				FetchInfo fetchInfo3=new FetchInfo();
+				int no_s= 0;
+					no_s=fetchInfo3.getNoOfStdInCourse(cid);
+					if(no_s<3)
+					
+					{
+						InsertInfo insertInfo=new InsertInfo();
+						insertInfo.insertCourse(sId, cid , no_of_course,no_s);
+					}
+					else {
+						msg="Course is full";
+						return  "Coursefull";
+					}
+				
 				}
 				else {
 					msg="You can take only 3 courses in this term";

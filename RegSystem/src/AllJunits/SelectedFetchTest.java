@@ -40,6 +40,9 @@ public class SelectedFetchTest {
 		FetchInfo fetchInfo5=new FetchInfo();
 		assertEquals(fetchInfo5.getCourseName(4), "Data Mining");
 		
+		FetchInfo fetchInfo6=new FetchInfo();
+		assertEquals(fetchInfo6.getNoOfStdInCourse(2), 3);
+		
 		
 	}
 	

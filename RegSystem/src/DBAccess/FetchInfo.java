@@ -353,6 +353,31 @@ try {
 		return cname;
 		
 	}
+
+
+	public int getNoOfStdInCourse(int cid) {
+		
+ int s_no=0;
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/registration_db","root","");
+			String qs = "SELECT * FROM courses where id= ?" ;
+			PreparedStatement ps=conn.prepareStatement(qs);
+			ps.setInt(1, cid);
+    		ResultSet rs = ps.executeQuery();
+			while(rs.next())
+			{
+				 s_no=rs.getInt("stdno");
+				
+			}
+		} catch (Exception e) {
+			System.out.println("validateInsert: Error in fetching student no of a course: "+e.getMessage());
+			//return "null";
+		}
+			
+		return s_no;
+	}
 			
 	
 	

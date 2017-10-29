@@ -34,6 +34,7 @@ button {
 </style>
 </head>
 <body>
+<a href="clientLogin">Back</a>
 <s:property value="courseName" />
 <div style="margin-top: 40px; margin-right: 150px; margin-left: 150px;">
 			<table>

@@ -38,12 +38,13 @@ public class DropCourses {
 			  cid=Integer.parseInt(id);
 			  
        }
-		int no_c=0;
+		int no_c=0;int no_s=0;
 		FetchInfo fetchInfo=new FetchInfo();
 		no_c=fetchInfo.getCourseNo(sId);
+		no_s=fetchInfo.getNoOfStdInCourse(cid);
 		
 		DeleteInfo deleteInfo=new DeleteInfo();
-		deleteInfo.delete(sId, cid , no_c);
+		deleteInfo.delete(sId, cid , no_c,no_s);
 		return "SUCCESS";
 		
 		

@@ -6,7 +6,7 @@ import java.sql.PreparedStatement;
 
 public class DeleteInfo {
 	
-	public void delete(int sid, int cid, int no_c)
+	public void delete(int sid, int cid, int no_c,int no_s)
 	{
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
@@ -23,14 +23,25 @@ public class DeleteInfo {
 				  statement1.setInt(1, no_c);
 				  statement1.setInt(2, sid);
 				  
-				  statement1.executeUpdate();
-				  
+				  statement1.executeUpdate();			  
 				  statement1.close();
+				  
+				  String q2 = "update courses set stdno = ? where id = ? ";
+				    no_s=no_s-1;
+					PreparedStatement statement2=conn.prepareStatement(q2);
+					  statement2.setInt(1, no_s);
+					  statement2.setInt(2, cid);
+					  
+					  statement2.executeUpdate();
+					  
+					  statement2.close();
+				  
+				  
 		      
 		      conn.close();
 		      
 		} catch (Exception e) {
-			System.out.println("validateInsert: Error inserting: "+e.getMessage());
+			System.out.println("validateInsert: Error dropping course: "+e.getMessage());
 			
 		}
 	}
