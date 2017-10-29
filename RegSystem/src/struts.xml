@@ -19,7 +19,7 @@
         </action>
 
          <action name="clientLogin" class="AllActions.ClientLoginAction" >
-            <result name="SUCCESS" type="chain">BringRSt</result>
+            <result name="SUCCESS" >/ClientActions.jsp</result>
             <result name="LOGIN">/ClientLogin.jsp</result>
         </action> 
         
@@ -70,6 +70,17 @@
          <action name="drop" class="AllActions.DropCourses" >
             <result name="SUCCESS" type="chain">mycourses</result>
             <result name="FAILURE">/StudentLogin.jsp</result>
+        
+         </action>
+         
+         <action name="courseinfo" class="AllActions.CourseInfoAction" >
+            <result name="success" >/CourseInfo.jsp</result>
+            <result name="failure"></result>
+        
+         </action>
+         <action name="selectCourse" class="AllActions.SelectCourseActions" >
+            <result name="success" >/ShowStdofCourse.jsp</result>
+            <result name="failure"></result>
         
          </action>
 

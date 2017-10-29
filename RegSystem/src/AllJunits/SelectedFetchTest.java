@@ -34,9 +34,11 @@ public class SelectedFetchTest {
 		student2=fetchInfo3.getRequestedStudent(21);
 		assertNull(student2);
 		
-		FetchInfo fetchInfo4=new FetchInfo();
-		
+		FetchInfo fetchInfo4=new FetchInfo();		
 		assertNotEquals(fetchInfo4.getCourseId(1, 1011), 1);
+		
+		FetchInfo fetchInfo5=new FetchInfo();
+		assertEquals(fetchInfo5.getCourseName(4), "Data Mining");
 		
 		
 	}
@@ -51,6 +53,9 @@ public class SelectedFetchTest {
 		FetchInfo fetchInfo6=new FetchInfo();
 		fetchInfo6.getRequestedStudent(1015);
 	}
+	
+	
+
 
 
 }

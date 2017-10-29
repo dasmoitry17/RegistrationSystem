@@ -284,6 +284,75 @@ try {
 					return null;
 				}
 			}
+
+
+	public List<Student> getStdofCourse(int cid) {
+		
+try {
+			
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/registration_db","root","");
+			String qs = "SELECT * FROM std_course  where courseid= ?" ;
+			PreparedStatement ps=conn.prepareStatement(qs);
+			ps.setInt(1, cid);
+    		ResultSet rs = ps.executeQuery();
+    		List<Student>myStudents=new ArrayList<Student>();
+    		
+    		while(rs.next())
+    		{
+    			String qString="SELECT * FROM regstd  where stdid=?"  ;
+    			PreparedStatement preparedStatement=conn.prepareStatement(qString);
+    			preparedStatement.setInt(1, rs.getInt("stdid"));
+    			ResultSet resultSet=preparedStatement.executeQuery();
+    			
+    			Student student=null;
+    			while(resultSet.next())
+    			{
+    				 student=new Student();
+    				 student.setFirstName(resultSet.getString("fName"));
+    				 student.setLastName(resultSet.getString("lName"));
+						student.setGender(resultSet.getString("gender"));
+						student.setNo_course_taken(resultSet.getInt("no_of_course"));
+						student.setPassword(resultSet.getString("password"));
+						student.setStdId(resultSet.getInt("stdid"));
+						myStudents.add(student);
+    				
+    			}
+    			
+    		}
+    		return myStudents;
+			
+		} catch (Exception e) {
+			System.out.println("validateInsert: Error in fetching stds of a course: "+e.getMessage());
+			return null;
+		}
+		
+	}
+
+
+	public String getCourseName(int cid)  {
+		String cname="null";
+		
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/registration_db","root","");
+			String qs = "SELECT * FROM courses where id= ?" ;
+			PreparedStatement ps=conn.prepareStatement(qs);
+			ps.setInt(1, cid);
+    		ResultSet rs = ps.executeQuery();
+			while(rs.next())
+			{
+				 cname=rs.getString("title");
+				
+			}
+		} catch (Exception e) {
+			System.out.println("validateInsert: Error in fetching cname: "+e.getMessage());
+			//return "null";
+		}
+			
+		return cname;
+		
+	}
 			
 	
 	
