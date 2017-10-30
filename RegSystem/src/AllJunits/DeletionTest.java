@@ -9,6 +9,9 @@ import org.hamcrest.CoreMatchers;
 import org.junit.Test;
 
 import AllActions.AppliedStudent;
+import AllActions.TimerAction;
+import AllActions.TimerDelete;
+import DBAccess.DeleteInfo;
 import DBAccess.FetchInfo;
 
 public class DeletionTest {
@@ -26,6 +29,14 @@ public class DeletionTest {
 	 assertThat(list, CoreMatchers.hasItem(student));
 	 
 	 AppliedStudent student2=new AppliedStudent("Laura", "Smith", 2, "female");
+	 
+	 DeleteInfo deleteInfo=new DeleteInfo();
+	 assertEquals(deleteInfo.deleteAllTables(),"success");
+	 
+	
+	 
+	 TimerDelete timerDelete=new TimerDelete();
+	 assertEquals(timerDelete.execute("2017-10-29"),"success");
 	 
 	}
 

@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 
+import java.sql.Statement;
+
 public class DeleteInfo {
 	
 	public void delete(int sid, int cid, int no_c,int no_s)
@@ -44,6 +46,32 @@ public class DeleteInfo {
 			System.out.println("validateInsert: Error dropping course: "+e.getMessage());
 			
 		}
+	}
+	
+	public String deleteAllTables()
+	{
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+			Connection conn = DriverManager.getConnection("jdbc:mysql://localhost/registration_db","root","");
+			String query = "delete from appliedstudents";
+		      Statement statement=conn.createStatement();
+		      statement.executeUpdate(query);
+		      
+		      String query1 = "delete from regstd";
+		      Statement statement1=conn.createStatement();
+		      statement1.executeUpdate(query1);
+		      
+		      String query2 = "delete from std_course";
+		      Statement statement2=conn.createStatement();
+		      statement.executeUpdate(query2);
+		      
+		      
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return "success";
+	      
 	}
 
 }

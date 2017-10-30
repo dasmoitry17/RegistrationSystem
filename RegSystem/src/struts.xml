@@ -84,6 +84,11 @@
             <result name="failure"></result>
         
          </action>
+         
+         <action name="timer" class="AllActions.TimerAction" method="execute">
+            
+        
+         </action>
 
 </package>
 </struts>
